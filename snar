@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Escaneo inicial
+figlet -f ivrit rans -l
+echo "Por: b4zh"
+echo " - v0.1"
+echo
+echo "[+] Escaneo inicial a $1"
+echo
+nmap -Pn -n -p- --open --min-rate 5000 --reason -oN init.nmap $1 1>/dev/null 2>errors.txt
+
+# Obteniendo puertos abiertos
+ports=$(grep "^[0-9]" init.nmap | cut -d "/" -f1 | xargs | tr " " "," | tee ports.txt 2>>errors.txt)
+echo "[+] Puertos abiertos: $ports"
+echo
+
+# Escaneando los servicios de los puertos abiertos, y enviando los scripts de default de nmap
+echo "[+] Escaneando servicios..."
+echo
+nmap -Pn -n -p${ports} --open -sVC --min-rate 5000 --reason -oN services.nmap $1 1>/dev/null 2>>errors.txt
+
+echo $?
