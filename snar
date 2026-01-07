@@ -22,3 +22,4 @@ echo
 nmap -Pn -n -p${ports} --open -sVC --min-rate 5000 --reason -oN services.nmap $1 1>/dev/null 2>>errors.txt
 
 echo $?
+echo "[+] FIN"
