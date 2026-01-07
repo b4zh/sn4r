@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # Escaneo inicial
+echo
 toilet -f pagga snar
+echo
 echo "Por: b4zh"
-echo " - v0.1"
+echo "v0.1"
 echo
 echo "[+] Escaneo inicial a $1"
 echo
