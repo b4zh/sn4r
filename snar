@@ -1,19 +1,34 @@
 #!/bin/bash
 
+# COLORES
+amarillo='\e[33m'
+rojo='\e[31m'
+verde='\e[32m'
+reset='\e[39m'
+negrita='\e[1m'
+
 # Escaneo inicial
-echo
-toilet -f pagga snar
-echo
+echo -ne "${negrita}"
+echo -e """
+             ${rojo}     ▄▄        
+${verde}  ▄▄▄   ▄ ▄▄  ${rojo}   ▄▀█  ${verde} ▄ ▄▄ 
+${verde} █   ▀  █▀  █ ${rojo}  █▀ █  ${verde} █▀  ▀
+${verde}  ▀▀▀▄  █   █ ${rojo} █▄▄▄█▄ ${verde} █    
+${verde} ▀▄▄▄▀  █   █ ${rojo}     █  ${verde} █    
+                                              
+"""
+echo -ne "${reset}"
+
 echo "Por: b4zh"
-echo "v0.1"
-echo
+echo "Versión: 0.1"
+echo -e "${amarillo}"
 echo "[+] Escaneo inicial a $1"
 echo
 nmap -Pn -n -p- --open --min-rate 5000 --reason -oN init.nmap $1 1>/dev/null 2>errors.txt
 
 # Obteniendo puertos abiertos
 ports=$(grep "^[0-9]" init.nmap | cut -d "/" -f1 | xargs | tr " " "," | tee ports.txt 2>>errors.txt)
-echo "[+] Puertos abiertos: $ports"
+echo -e "[+] Puertos abiertos: ${reset}$ports${amarillo}"
 echo
 
 # Escaneando los servicios de los puertos abiertos, y enviando los scripts de default de nmap
@@ -21,5 +36,5 @@ echo "[+] Escaneando servicios..."
 echo
 nmap -Pn -n -p${ports} --open -sVC --min-rate 5000 --reason -oN services.nmap $1 1>/dev/null 2>>errors.txt
 
-echo $?
-echo "[+] FIN"
+#echo $? PENDIENTE PERRO CALIENTE
+echo -e "${reset}[+] FIN"
