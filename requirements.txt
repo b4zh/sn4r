@@ -1,0 +1,4 @@
+Tu, tienes que tener en tu sistema:
+nmap (obviamente)
+toilet (pa darle sabor)
+
