@@ -20,7 +20,7 @@ ${verde} ▀▄▄▄▀  █   █ ${rojo}     █  ${verde} █
 echo -ne "${reset}"
 
 echo "Por: b4zh"
-echo "Versión: 0.1"
+echo "Versión: beta"
 echo -e "${amarillo}"
 # Escaneo inicial
 echo "[+] Escaneo inicial a $1"
